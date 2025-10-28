@@ -1,6 +1,10 @@
 const express = require("express");
+const cors = require("cors");
 const app = express();
 const port = process.env.PORT || 4000;
+
+app.use(cors());
+app.use(express.json());
 
 app.get("/", (req, res) => {
   res.send("users sarver is avilable");
@@ -17,6 +21,11 @@ const usres = [
 
 app.get("/users", (req, res) => {
   res.send(usres);
+});
+
+app.post("/users", (req, res) => {
+  console.log("post method called", req.body);
+  const newUser = req.body;
 });
 
 app.listen(port, () => {
